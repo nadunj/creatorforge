@@ -17,11 +17,11 @@ const articles = (
 
 <BaseLayout title={`${contentType.name} — CreatorForge`} description={contentType.description}>
   <div class="mx-auto max-w-6xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-slate-900">{contentType.name}</h1>
-    <p class="mt-2 max-w-2xl text-slate-600">{contentType.description}</p>
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-slate-100">{contentType.name}</h1>
+    <p class="mt-2 max-w-2xl text-slate-600 dark:text-slate-400">{contentType.description}</p>
 
     {articles.length === 0 ? (
-      <p class="mt-8 text-slate-500">Nothing published here yet — check back soon.</p>
+      <p class="mt-8 text-slate-500 dark:text-slate-400">Nothing published here yet — check back soon.</p>
     ) : (
       <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article) => <ArticleCard article={article} />)}

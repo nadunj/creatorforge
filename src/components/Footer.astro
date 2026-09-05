@@ -3,42 +3,42 @@ import { CATEGORIES, CONTENT_TYPES } from '../lib/taxonomy';
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-slate-200 bg-slate-50">
+<footer class="border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900">
   <div class="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-4 py-10 sm:grid-cols-4">
     <div>
-      <h3 class="mb-3 text-sm font-semibold text-slate-900">Categories</h3>
-      <ul class="space-y-2 text-sm text-slate-600">
+      <h3 class="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Categories</h3>
+      <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
         {CATEGORIES.map((cat) => (
-          <li><a href={`/category/${cat.slug}/`} class="hover:text-indigo-600">{cat.name}</a></li>
+          <li><a href={`/category/${cat.slug}/`} class="hover:text-indigo-600 dark:hover:text-indigo-400">{cat.name}</a></li>
         ))}
       </ul>
     </div>
     <div>
-      <h3 class="mb-3 text-sm font-semibold text-slate-900">Content</h3>
-      <ul class="space-y-2 text-sm text-slate-600">
+      <h3 class="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Content</h3>
+      <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
         {CONTENT_TYPES.map((t) => (
-          <li><a href={`/${t.slug}/`} class="hover:text-indigo-600">{t.name}</a></li>
+          <li><a href={`/${t.slug}/`} class="hover:text-indigo-600 dark:hover:text-indigo-400">{t.name}</a></li>
         ))}
-        <li><a href="/tools/" class="hover:text-indigo-600">Tool Directory</a></li>
+        <li><a href="/tools/" class="hover:text-indigo-600 dark:hover:text-indigo-400">Tool Directory</a></li>
       </ul>
     </div>
     <div>
-      <h3 class="mb-3 text-sm font-semibold text-slate-900">Site</h3>
-      <ul class="space-y-2 text-sm text-slate-600">
-        <li><a href="/about/" class="hover:text-indigo-600">About</a></li>
-        <li><a href="/rss.xml" class="hover:text-indigo-600">RSS Feed</a></li>
+      <h3 class="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Site</h3>
+      <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+        <li><a href="/about/" class="hover:text-indigo-600 dark:hover:text-indigo-400">About</a></li>
+        <li><a href="/rss.xml" class="hover:text-indigo-600 dark:hover:text-indigo-400">RSS Feed</a></li>
       </ul>
     </div>
     <div>
-      <h3 class="mb-3 text-sm font-semibold text-slate-900">Disclosure</h3>
-      <p class="text-sm text-slate-600">
+      <h3 class="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Disclosure</h3>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
         Some links on this site are affiliate links. We may earn a commission
         at no extra cost to you if you buy through them. We only recommend
         tools we've actually researched or used.
       </p>
     </div>
   </div>
-  <div class="border-t border-slate-200 px-4 py-4 text-center text-xs text-slate-500">
+  <div class="border-t border-slate-200 px-4 py-4 text-center text-xs text-slate-500 dark:border-slate-800 dark:text-slate-500">
     © {year} CreatorForge. All rights reserved.
   </div>
 </footer>

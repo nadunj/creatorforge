@@ -12,13 +12,13 @@ const typeName = CONTENT_TYPES.find((t) => t.slug === article.data.type)?.name ?
 
 <a
   href={`/${article.id}/`}
-  class="group flex flex-col rounded-xl border border-slate-200 p-5 transition hover:border-indigo-300 hover:shadow-md"
+  class="group flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 p-5 transition hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md"
 >
-  <span class="mb-2 inline-block w-fit rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-semibold text-indigo-700">
+  <span class="mb-2 inline-block w-fit rounded-full bg-indigo-50 dark:bg-indigo-500/10 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
     {typeName}
   </span>
-  <h3 class="mb-1.5 text-lg font-semibold text-slate-900 group-hover:text-indigo-600">
+  <h3 class="mb-1.5 text-lg font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
     {article.data.title}
   </h3>
-  <p class="text-sm text-slate-600">{article.data.description}</p>
+  <p class="text-sm text-slate-600 dark:text-slate-400">{article.data.description}</p>
 </a>

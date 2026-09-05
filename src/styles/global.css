@@ -7,12 +7,13 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light dark;
 }
 
 body {
-  @apply bg-white text-slate-900 antialiased;
+  @apply bg-white text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-100;
 }
 
 .prose-article {
-  @apply prose prose-slate max-w-none prose-headings:font-semibold prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline;
+  @apply prose prose-slate max-w-none prose-headings:font-semibold prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline dark:prose-invert dark:prose-a:text-indigo-400;
 }

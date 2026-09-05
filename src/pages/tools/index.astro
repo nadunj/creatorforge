@@ -13,8 +13,8 @@ const tools = (await getCollection('tools', ({ data }) => !data.draft)).sort((a,
   description="Browse AI tools for YouTube, TikTok, and Facebook creators — voice generators, image tools, video AI, and automation, with pricing and free-tier info."
 >
   <div class="mx-auto max-w-6xl px-4 py-12">
-    <h1 class="text-3xl font-bold text-slate-900">AI Tool Directory</h1>
-    <p class="mt-2 max-w-2xl text-slate-600">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-slate-100">AI Tool Directory</h1>
+    <p class="mt-2 max-w-2xl text-slate-600 dark:text-slate-400">
       Every tool here has a plain-English writeup: what it's for, what it costs,
       and whether there's a free tier worth using.
     </p>
@@ -24,14 +24,14 @@ const tools = (await getCollection('tools', ({ data }) => !data.draft)).sort((a,
         id="tool-search"
         type="search"
         placeholder="Search tools…"
-        class="w-full max-w-xs rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+        class="w-full max-w-xs rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm text-slate-900 dark:text-slate-100 focus:border-indigo-500 focus:outline-none"
       />
-      <select id="category-filter" class="rounded-md border border-slate-300 px-3 py-2 text-sm">
+      <select id="category-filter" class="rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm text-slate-900 dark:text-slate-100">
         <option value="">All categories</option>
         {CATEGORIES.map((cat) => <option value={cat.slug}>{cat.name}</option>)}
       </select>
-      <label class="flex items-center gap-2 text-sm text-slate-600">
-        <input id="free-only" type="checkbox" class="rounded border-slate-300" />
+      <label class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+        <input id="free-only" type="checkbox" class="rounded border-slate-300 dark:border-slate-600" />
         Free tier only
       </label>
     </div>
@@ -40,27 +40,27 @@ const tools = (await getCollection('tools', ({ data }) => !data.draft)).sort((a,
       {tools.map((tool) => (
         <a
           href={`/tools/${tool.id}/`}
-          class="tool-card rounded-xl border border-slate-200 p-5 transition hover:border-indigo-300 hover:shadow-md"
+          class="tool-card rounded-xl border border-slate-200 dark:border-slate-700 p-5 transition hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md"
           data-name={tool.data.name.toLowerCase()}
           data-categories={tool.data.categories.join(',')}
           data-free={tool.data.hasFreeTier ? '1' : '0'}
         >
           <div class="mb-2 flex items-center justify-between">
-            <h3 class="font-semibold text-slate-900">{tool.data.name}</h3>
-            <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
+            <h3 class="font-semibold text-slate-900 dark:text-slate-100">{tool.data.name}</h3>
+            <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-400">
               {tool.data.pricingModel}
             </span>
           </div>
-          <p class="text-sm text-slate-600">{tool.data.description}</p>
+          <p class="text-sm text-slate-600 dark:text-slate-400">{tool.data.description}</p>
           <div class="mt-3 flex flex-wrap gap-1.5">
             {tool.data.categories.map((slug) => (
-              <span class="text-xs text-slate-400">{getCategory(slug)?.name}</span>
+              <span class="text-xs text-slate-400 dark:text-slate-500">{getCategory(slug)?.name}</span>
             ))}
           </div>
         </a>
       ))}
     </div>
-    <p id="no-results" class="mt-8 hidden text-slate-500">No tools match those filters.</p>
+    <p id="no-results" class="mt-8 hidden text-slate-500 dark:text-slate-400">No tools match those filters.</p>
   </div>
 
   <script>
