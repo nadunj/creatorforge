@@ -23,7 +23,7 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = new URL(image, Astro.site);
-const siteName = 'Creator Tools Hub';
+const siteName = 'CreatorForge';
 const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 
 const jsonLdEntries = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];

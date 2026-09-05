@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // IMPORTANT: replace with your real domain before deploying — canonical URLs,
 // the sitemap, and RSS feed all depend on this being correct.
-const SITE_URL = 'https://creatortoolshub.pages.dev';
+const SITE_URL = 'https://creatorforge.pages.dev';
 
 // https://astro.build/config
 export default defineConfig({

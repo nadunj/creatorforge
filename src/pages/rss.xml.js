@@ -7,7 +7,7 @@ export async function GET(context) {
   );
 
   return rss({
-    title: 'Creator Tools Hub',
+    title: 'CreatorForge',
     description: 'AI tools, guides, and comparisons for content creators.',
     site: context.site,
     items: articles.map((article) => ({
