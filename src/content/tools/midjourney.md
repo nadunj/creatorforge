@@ -33,4 +33,4 @@ tools, but Discord is still where most detailed prompt engineering happens.
 Thumbnail generation and single hero images where visual punch drives
 click-through rate. For dozens of consistent in-video images across a whole
 script, [Leonardo AI](/tools/leonardo-ai/) or [ChatGPT Images](/tools/chatgpt-images/)
-are usually a better fit — see the full [image generator comparison](/compare/leonardo-vs-midjourney-vs-chatgpt-images/).
+are usually a better fit.

@@ -25,7 +25,7 @@ alternative — a genuinely usable daily quota, billed by request rather than
 character. The catch: no built-in timestamp data, so you'll need a separate
 alignment step to build subtitles, and daily quota resets are tied to your
 specific project, not a universal clock. Full head-to-head in
-[Gemini TTS vs ElevenLabs](/compare/gemini-tts-vs-elevenlabs/).
+[Gemini TTS vs ElevenLabs](/compare/gemini-tts-vs-elevenlabs-youtube/).
 
 ## 2. Gemini (or any TTS) + Seed-VC
 

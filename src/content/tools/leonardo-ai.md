@@ -33,9 +33,9 @@ need every image to look like the same "world."
 
 The token system is the main source of confusion: higher resolutions and
 certain models cost more tokens per generation, so a plan that sounds
-generous in image *count* can run out fast at higher settings. See our
-[AI image generator comparison](/compare/leonardo-vs-midjourney-vs-chatgpt-images/)
-for how its real-world cost stacks up.
+generous in image *count* can run out fast at higher settings — compare it
+against [Midjourney](/tools/midjourney/) and [ChatGPT Images](/tools/chatgpt-images/)
+before committing to a plan.
 
 ## Who it's for
 

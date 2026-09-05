@@ -31,5 +31,5 @@ standalone dashboard adds deeper keyword research and tracking.
 
 Any channel treating YouTube as a search engine rather than only a
 recommendation feed — useful alongside a title/thumbnail strategy for
-[faceless YouTube channels](/guides/best-ai-tools-for-faceless-youtube-channels/)
-specifically, where you don't have a personal brand doing discovery work for you.
+faceless YouTube channels specifically, where you don't have a personal
+brand doing discovery work for you.

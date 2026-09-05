@@ -44,4 +44,4 @@ per-character billing.
 
 Creators producing regular long-form content who want to keep TTS costs near
 zero and don't mind an extra alignment step. Compare it directly against
-per-character pricing in [Gemini TTS vs ElevenLabs](/compare/gemini-tts-vs-elevenlabs/).
+per-character pricing in [Gemini TTS vs ElevenLabs](/compare/gemini-tts-vs-elevenlabs-youtube/).

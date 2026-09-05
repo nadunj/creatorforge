@@ -78,4 +78,4 @@ For most creators: a low-volume, quality-first channel can comfortably afford
 [ElevenLabs](/tools/elevenlabs/); a high-volume or budget-first channel
 should default to [Gemini TTS](/tools/gemini-tts/) and batch aggressively.
 Full engine-by-engine comparison in [Gemini TTS vs
-ElevenLabs](/compare/gemini-tts-vs-elevenlabs/).
+ElevenLabs](/compare/gemini-tts-vs-elevenlabs-youtube/).

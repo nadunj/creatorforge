@@ -36,4 +36,4 @@ blank face on some generations and a detailed one on others).
 Explainer, psychology, and educational channels using a locked flat-2D
 illustration style, where careful, consistent prompting matters more than
 one-shot visual impact. See it head-to-head with [Leonardo AI](/tools/leonardo-ai/)
-and [Midjourney](/tools/midjourney/) in our [image generator comparison](/compare/leonardo-vs-midjourney-vs-chatgpt-images/).
+and [Midjourney](/tools/midjourney/).
