@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { CATEGORIES } from '../../lib/taxonomy';
+
+export async function getStaticPaths() {
+  return CATEGORIES.map((cat) => ({ params: { category: cat.slug }, props: { cat } }));
+}
+
+const { cat } = Astro.props;
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft && data.categories.includes(cat.slug)))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const tools = await getCollection('tools', ({ data }) => !data.draft && data.categories.includes(cat.slug));
+---
+
+<BaseLayout
+  title={`${cat.name} — Creator Tools Hub`}
+  description={cat.description}
+>
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-slate-900">{cat.name}</h1>
+    <p class="mt-2 max-w-2xl text-slate-600">{cat.description}</p>
+
+    {tools.length > 0 && (
+      <section class="mt-10">
+        <h2 class="mb-4 text-xl font-bold text-slate-900">Tools</h2>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {tools.map((tool) => (
+            <a href={`/tools/${tool.id}/`} class="rounded-xl border border-slate-200 p-5 hover:border-indigo-300 hover:shadow-md">
+              <h3 class="font-semibold text-slate-900">{tool.data.name}</h3>
+              <p class="mt-1 text-sm text-slate-600">{tool.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="mt-10">
+      <h2 class="mb-4 text-xl font-bold text-slate-900">Articles</h2>
+      {articles.length === 0 ? (
+        <p class="text-slate-500">No articles in this category yet — check back soon.</p>
+      ) : (
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {articles.map((article) => <ArticleCard article={article} />)}
+        </div>
+      )}
+    </section>
+  </div>
+</BaseLayout>

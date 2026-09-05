@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-900 antialiased;
+}
+
+.prose-article {
+  @apply prose prose-slate max-w-none prose-headings:font-semibold prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline;
+}
