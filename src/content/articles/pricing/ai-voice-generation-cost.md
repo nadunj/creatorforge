@@ -18,6 +18,11 @@ hasAffiliateLinks: false
 the two most popular engines bill on completely different units. Here's how
 to actually estimate your real cost.
 
+**Want the numbers for your own script?** Use the [AI Voice Generation Cost
+Calculator](/calculators/ai-voice-cost/) — enter your word count and your
+provider's current rate, get an estimated duration, character count, and
+cost, no signup required.
+
 ## The two billing models
 
 **Per-character** (e.g. ElevenLabs): cost scales directly with script

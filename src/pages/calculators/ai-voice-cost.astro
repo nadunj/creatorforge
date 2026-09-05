@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'AI Voice Generation Cost Calculator',
+  applicationCategory: 'Calculator',
+  operatingSystem: 'Any (web-based)',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+
+<BaseLayout
+  title="AI Voice Generation Cost Calculator — Estimate Narration Cost & Duration"
+  description="Estimate your script's spoken duration, character count, and AI voiceover cost for per-character (ElevenLabs-style) or per-request (Gemini-style) billing. Free tool, no signup."
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-slate-100">AI Voice Generation Cost Calculator</h1>
+    <p class="mt-2 text-slate-600 dark:text-slate-400">
+      Estimate your script's spoken duration and narration cost before you generate anything.
+      Enter your provider's current rate yourself — pricing changes often, so this tool never
+      guesses a number for you. See the
+      <a href="/pricing/ai-voice-generation-cost/" class="text-indigo-600 hover:underline dark:text-indigo-400">full cost breakdown</a>
+      for how per-character and per-request billing actually compare.
+    </p>
+
+    <div class="mt-8 rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Script word count</span>
+          <input
+            id="words"
+            type="number"
+            min="1"
+            value="1000"
+            class="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+          />
+        </label>
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Speaking pace (words/minute)</span>
+          <input
+            id="wpm"
+            type="number"
+            min="60"
+            max="220"
+            value="140"
+            class="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+          />
+        </label>
+      </div>
+
+      <div class="mt-5">
+        <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Billing model</span>
+        <div class="mt-2 flex gap-4 text-sm text-slate-700 dark:text-slate-300">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="billing" id="billing-char" checked class="border-slate-300 dark:border-slate-600" />
+            Per-character (e.g. ElevenLabs)
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="billing" id="billing-request" class="border-slate-300 dark:border-slate-600" />
+            Per-request/quota (e.g. Gemini TTS)
+          </label>
+        </div>
+      </div>
+
+      <div id="char-inputs" class="mt-4">
+        <label class="block max-w-xs">
+          <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Rate per 1,000 characters (USD)</span>
+          <input
+            id="rate"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Check your plan's current rate"
+            class="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+          />
+        </label>
+      </div>
+
+      <div id="request-inputs" class="mt-4 hidden">
+        <label class="block max-w-xs">
+          <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Words per request (chunk size)</span>
+          <input
+            id="chunk"
+            type="number"
+            min="10"
+            value="250"
+            class="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+          />
+        </label>
+      </div>
+
+      <div class="mt-6 grid grid-cols-2 gap-4 rounded-lg bg-slate-50 p-4 dark:bg-slate-800 sm:grid-cols-3">
+        <div>
+          <div class="text-xs font-semibold uppercase text-slate-400 dark:text-slate-500">Est. duration</div>
+          <div id="out-duration" class="mt-1 text-lg font-bold text-slate-900 dark:text-slate-100">—</div>
+        </div>
+        <div>
+          <div class="text-xs font-semibold uppercase text-slate-400 dark:text-slate-500">Est. characters</div>
+          <div id="out-chars" class="mt-1 text-lg font-bold text-slate-900 dark:text-slate-100">—</div>
+        </div>
+        <div id="out-cost-wrap">
+          <div class="text-xs font-semibold uppercase text-slate-400 dark:text-slate-500">Est. cost</div>
+          <div id="out-cost" class="mt-1 text-lg font-bold text-slate-900 dark:text-slate-100">—</div>
+        </div>
+        <div id="out-requests-wrap" class="hidden">
+          <div class="text-xs font-semibold uppercase text-slate-400 dark:text-slate-500">Est. requests</div>
+          <div id="out-requests" class="mt-1 text-lg font-bold text-slate-900 dark:text-slate-100">—</div>
+        </div>
+      </div>
+
+      <p class="mt-4 text-xs text-slate-500 dark:text-slate-500">
+        Character count is estimated at ~6 characters per word (letters plus spaces/punctuation) —
+        your actual script will vary. This tool doesn't store or send your inputs anywhere; everything
+        runs in your browser.
+      </p>
+    </div>
+
+    <div class="prose-article mt-10">
+      <h2>How to use this</h2>
+      <p>
+        Paste your script's word count (most word processors show this) and pick a realistic
+        speaking pace — 140 WPM is a common conversational default; documentary-style narration
+        often runs slower. For per-character billing, open your provider's current pricing page,
+        find the rate for your plan tier, and enter it here. For per-request billing, enter the
+        chunk size your generation workflow actually uses.
+      </p>
+      <p>
+        Read the <a href="/pricing/ai-voice-generation-cost/">full cost breakdown</a> for the
+        reasoning behind these numbers, or compare
+        <a href="/compare/gemini-tts-vs-elevenlabs-youtube/">Gemini TTS vs ElevenLabs</a> directly.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const words = document.getElementById('words') as HTMLInputElement;
+    const wpm = document.getElementById('wpm') as HTMLInputElement;
+    const rate = document.getElementById('rate') as HTMLInputElement;
+    const chunk = document.getElementById('chunk') as HTMLInputElement;
+    const billingChar = document.getElementById('billing-char') as HTMLInputElement;
+    const billingRequest = document.getElementById('billing-request') as HTMLInputElement;
+    const charInputs = document.getElementById('char-inputs')!;
+    const requestInputs = document.getElementById('request-inputs')!;
+    const outCostWrap = document.getElementById('out-cost-wrap')!;
+    const outRequestsWrap = document.getElementById('out-requests-wrap')!;
+
+    const outDuration = document.getElementById('out-duration')!;
+    const outChars = document.getElementById('out-chars')!;
+    const outCost = document.getElementById('out-cost')!;
+    const outRequests = document.getElementById('out-requests')!;
+
+    const CHARS_PER_WORD = 6;
+
+    function formatDuration(minutesFloat: number) {
+      const totalSeconds = Math.round(minutesFloat * 60);
+      const m = Math.floor(totalSeconds / 60);
+      const s = totalSeconds % 60;
+      return `${m}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function recalc() {
+      const wordCount = Math.max(0, Number(words.value) || 0);
+      const pace = Math.max(1, Number(wpm.value) || 140);
+      const chars = Math.round(wordCount * CHARS_PER_WORD);
+      const duration = wordCount / pace;
+
+      outDuration.textContent = formatDuration(duration);
+      outChars.textContent = chars.toLocaleString('en-US');
+
+      const isPerChar = billingChar.checked;
+      charInputs.classList.toggle('hidden', !isPerChar);
+      requestInputs.classList.toggle('hidden', isPerChar);
+      outCostWrap.classList.toggle('hidden', !isPerChar);
+      outRequestsWrap.classList.toggle('hidden', isPerChar);
+
+      if (isPerChar) {
+        const r = Number(rate.value) || 0;
+        const cost = (chars / 1000) * r;
+        outCost.textContent = r > 0 ? `$${cost.toFixed(2)}` : '—';
+      } else {
+        const chunkSize = Math.max(1, Number(chunk.value) || 250);
+        const requests = Math.ceil(wordCount / chunkSize) || 0;
+        outRequests.textContent = requests.toLocaleString('en-US');
+      }
+    }
+
+    [words, wpm, rate, chunk].forEach((el) => el.addEventListener('input', recalc));
+    [billingChar, billingRequest].forEach((el) => el.addEventListener('change', recalc));
+    recalc();
+  </script>
+</BaseLayout>
