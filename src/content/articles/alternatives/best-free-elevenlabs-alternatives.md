@@ -5,8 +5,14 @@ type: "alternatives"
 categories: ["audio-tts", "comparisons"]
 tags: ["elevenlabs alternatives", "free tts", "ai voice"]
 pubDate: 2026-09-05
+image: "/images/articles/13-elevenlabs-alternatives.jpg"
+imageAlt: "Video editing timeline with waveforms on a dark screen."
 hasAffiliateLinks: false
 ---
+
+![Video editing timeline with waveforms on a dark screen.](/images/articles/13-elevenlabs-alternatives.jpg)
+
+*Photo: [Peter Stumpf](https://unsplash.com/photos/video-editing-timeline-on-dark-screen-yk9VXp4W5-Q), [Unsplash License](https://unsplash.com/license).*
 
 ElevenLabs sounds great, but per-character billing punishes exactly the
 creators who need TTS most: high-volume, long-form channels. If cost is the

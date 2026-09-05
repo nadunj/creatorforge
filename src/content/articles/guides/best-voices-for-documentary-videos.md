@@ -5,8 +5,14 @@ type: "guides"
 categories: ["audio-tts", "youtube"]
 tags: ["documentary narration", "ai voice", "voiceover"]
 pubDate: 2026-09-05
+image: "/images/articles/14-documentary-voices.jpg"
+imageAlt: "A film clapperboard held up against a desert landscape at sunset."
 hasAffiliateLinks: false
 ---
+
+![A film clapperboard held up against a desert landscape at sunset.](/images/articles/14-documentary-voices.jpg)
+
+*Photo: [Jakob Owens](https://unsplash.com/photos/clap-board-roadside-jakob-and-ryan-CiUR8zISX60), [Unsplash License](https://unsplash.com/license).*
 
 Documentary-style narration has a different job than a punchy Shorts hook —
 it needs to hold attention for eight to ten minutes without fatiguing the

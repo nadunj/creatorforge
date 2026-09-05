@@ -5,8 +5,14 @@ type: "pricing"
 categories: ["audio-tts", "ai-tools"]
 tags: ["ai voice cost", "tts pricing", "elevenlabs cost"]
 pubDate: 2026-09-05
+image: "/images/articles/15-voice-cost.jpg"
+imageAlt: "A calculator on a desk next to a laptop and notebook."
 hasAffiliateLinks: false
 ---
+
+![A calculator on a desk next to a laptop and notebook.](/images/articles/15-voice-cost.jpg)
+
+*Photo: [Jakub Żerdzicki](https://unsplash.com/photos/a-calculator-sitting-on-top-of-a-table-next-to-a-laptop-8wLZi9OhsWU), [Unsplash License](https://unsplash.com/license).*
 
 "How much does AI voice generation cost" doesn't have one answer, because
 the two most popular engines bill on completely different units. Here's how
