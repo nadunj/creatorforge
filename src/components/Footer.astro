@@ -1,5 +1,6 @@
 ---
-import { CATEGORIES, CONTENT_TYPES } from '../lib/taxonomy';
+import { getActiveNav } from '../lib/nav-data';
+const { categories, contentTypes } = await getActiveNav();
 const year = new Date().getFullYear();
 ---
 
@@ -8,7 +9,7 @@ const year = new Date().getFullYear();
     <div>
       <h3 class="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Categories</h3>
       <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
-        {CATEGORIES.map((cat) => (
+        {categories.map((cat) => (
           <li><a href={`/category/${cat.slug}/`} class="hover:text-indigo-600 dark:hover:text-indigo-400">{cat.name}</a></li>
         ))}
       </ul>
@@ -16,7 +17,8 @@ const year = new Date().getFullYear();
     <div>
       <h3 class="mb-3 text-sm font-semibold text-slate-900 dark:text-slate-100">Content</h3>
       <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
-        {CONTENT_TYPES.map((t) => (
+        <li><a href="/articles/" class="hover:text-indigo-600 dark:hover:text-indigo-400">All Articles</a></li>
+        {contentTypes.map((t) => (
           <li><a href={`/${t.slug}/`} class="hover:text-indigo-600 dark:hover:text-indigo-400">{t.name}</a></li>
         ))}
         <li><a href="/tools/" class="hover:text-indigo-600 dark:hover:text-indigo-400">Tool Directory</a></li>

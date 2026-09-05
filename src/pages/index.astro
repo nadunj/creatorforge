@@ -1,7 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { CATEGORIES, CONTENT_TYPES, getCategory } from '../lib/taxonomy';
+import { CONTENT_TYPES } from '../lib/taxonomy';
+import { getActiveNav } from '../lib/nav-data';
+import Thumbnail from '../components/Thumbnail.astro';
+
+const { categories } = await getActiveNav();
 
 const allArticles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -66,27 +70,19 @@ const jsonLd = [
     <section class="mx-auto max-w-6xl px-4 py-14">
       <div class="mb-6 flex items-center justify-between">
         <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Latest from CreatorForge</h2>
-        <a href="/guides/" class="text-sm font-semibold text-indigo-600 hover:underline dark:text-indigo-400">View all articles →</a>
+        <a href="/articles/" class="text-sm font-semibold text-indigo-600 hover:underline dark:text-indigo-400">View all articles →</a>
       </div>
 
       <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div class="lg:col-span-2">
           <article>
             <a href={`/${featured.id}/`} class="group block overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 transition hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md">
-              {featured.data.image ? (
-                <img
-                  src={featured.data.image}
-                  alt={featured.data.imageAlt ?? featured.data.title}
-                  class="h-64 w-full object-cover sm:h-80"
-                  loading="eager"
-                />
-              ) : (
-                <div class="flex h-64 w-full items-center justify-center bg-gradient-to-br from-indigo-500 to-indigo-800 sm:h-80">
-                  <span class="text-lg font-bold uppercase tracking-widest text-white/80">
-                    {typeName(featured.data.type)}
-                  </span>
-                </div>
-              )}
+              <Thumbnail
+                src={featured.data.image}
+                alt={featured.data.imageAlt ?? featured.data.title}
+                label={typeName(featured.data.type)}
+                class="h-64 w-full sm:h-80"
+              />
               <div class="p-6">
                 <div class="mb-3 flex flex-wrap items-center gap-2">
                   <span class="rounded-full bg-indigo-50 dark:bg-indigo-500/10 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
@@ -110,18 +106,26 @@ const jsonLd = [
               {alsoNew.map((article) => (
                 <a
                   href={`/${article.id}/`}
-                  class="group block rounded-xl border border-slate-200 dark:border-slate-700 p-5 transition hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md"
+                  class="group block overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 transition hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md"
                 >
-                  <div class="mb-2 flex flex-wrap items-center gap-2">
-                    <span class="rounded-full bg-indigo-50 dark:bg-indigo-500/10 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
-                      {typeName(article.data.type)}
-                    </span>
-                    <span class="text-xs font-medium text-slate-400 dark:text-slate-500">
-                      {article.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                    </span>
+                  <Thumbnail
+                    src={article.data.image}
+                    alt={article.data.imageAlt ?? article.data.title}
+                    label={typeName(article.data.type)}
+                    class="h-32 w-full"
+                  />
+                  <div class="p-4">
+                    <div class="mb-2 flex flex-wrap items-center gap-2">
+                      <span class="rounded-full bg-indigo-50 dark:bg-indigo-500/10 px-2.5 py-0.5 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
+                        {typeName(article.data.type)}
+                      </span>
+                      <span class="text-xs font-medium text-slate-400 dark:text-slate-500">
+                        {article.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </span>
+                    </div>
+                    <h4 class="font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{article.data.title}</h4>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{article.data.description}</p>
                   </div>
-                  <h4 class="font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{article.data.title}</h4>
-                  <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{article.data.description}</p>
                 </a>
               ))}
             </div>
@@ -133,12 +137,20 @@ const jsonLd = [
           <ul class="divide-y divide-slate-200 rounded-xl border border-slate-200 dark:border-slate-700">
             {sidebarArticles.map((article) => (
               <li>
-                <a href={`/${article.id}/`} class="flex flex-col gap-1 p-4 transition hover:bg-slate-50 dark:hover:bg-slate-800">
-                  <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400">{typeName(article.data.type)}</span>
-                  <span class="font-medium text-slate-900 dark:text-slate-100">{article.data.title}</span>
-                  <span class="text-xs text-slate-400 dark:text-slate-500">
-                    {article.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                  </span>
+                <a href={`/${article.id}/`} class="flex items-start gap-3 p-4 transition hover:bg-slate-50 dark:hover:bg-slate-800">
+                  <Thumbnail
+                    src={article.data.image}
+                    alt={article.data.imageAlt ?? article.data.title}
+                    label={typeName(article.data.type)}
+                    class="h-16 w-16 flex-shrink-0 rounded-md"
+                  />
+                  <div class="flex min-w-0 flex-col gap-1">
+                    <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400">{typeName(article.data.type)}</span>
+                    <span class="font-medium text-slate-900 dark:text-slate-100">{article.data.title}</span>
+                    <span class="text-xs text-slate-400 dark:text-slate-500">
+                      {article.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </span>
+                  </div>
                 </a>
               </li>
             ))}
@@ -149,9 +161,12 @@ const jsonLd = [
   )}
 
   <section class="mx-auto max-w-6xl px-4 pb-16">
-    <h2 class="mb-6 text-2xl font-bold text-slate-900 dark:text-slate-100">Explore by category</h2>
+    <div class="mb-6 flex items-center justify-between">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Explore by category</h2>
+      <a href="/category/" class="text-sm font-semibold text-indigo-600 hover:underline dark:text-indigo-400">View all categories →</a>
+    </div>
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {CATEGORIES.map((cat) => (
+      {categories.slice(0, 6).map((cat) => (
         <a
           href={`/category/${cat.slug}/`}
           class="rounded-xl border border-slate-200 dark:border-slate-700 p-5 transition hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md"

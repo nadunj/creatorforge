@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getActiveNav } from '../../lib/nav-data';
+
+const { categories } = await getActiveNav();
+---
+
+<BaseLayout
+  title="Browse by Category"
+  description="Every topic CreatorForge covers — AI tools, video, audio/TTS, images, YouTube, Facebook, TikTok, automation, and more."
+>
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Browse by Category</h1>
+    <p class="mt-2 max-w-2xl text-slate-600 dark:text-slate-400">
+      Every topic CreatorForge covers, in one place.
+    </p>
+    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {categories.map((cat) => (
+        <a
+          href={`/category/${cat.slug}/`}
+          class="rounded-xl border border-slate-200 dark:border-slate-700 p-5 transition hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md"
+        >
+          <h2 class="mb-1 font-semibold text-slate-900 dark:text-slate-100">{cat.name}</h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400">{cat.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
