@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Source: Gemini API pricing (Veo per-second rates)",
+    "url": "https://ai.google.dev/gemini-api/docs/pricing",
+    "checked_on": "2026-09-06"
+  },
+  {
+    "title": "Source: Google AI Pro/Ultra subscription pricing",
+    "url": "https://one.google.com/about/google-ai-plans/",
+    "checked_on": "2026-09-06"
+  },
+  {
+    "title": "Source: Midjourney plans and pricing",
+    "url": "https://www.midjourney.com/pricing",
+    "checked_on": "2026-09-06"
+  },
+  {
+    "title": "Source: Leonardo AI pricing and token allowances",
+    "url": "https://leonardo.ai/pricing/",
+    "checked_on": "2026-09-06"
+  },
+  {
+    "title": "Source: YouTube thumbnail specifications",
+    "url": "https://support.google.com/youtube/answer/72431?hl=en",
+    "checked_on": "2026-09-06"
+  },
+  {
+    "title": "Source: YouTube synthetic media disclosure guidance",
+    "url": "https://support.google.com/youtube/answer/14328491?hl=en",
+    "checked_on": "2026-09-06"
+  }
+]
